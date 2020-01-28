@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>frp | PHB</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="准备工作一台VPS、frps服务/客户端、一个域名、一个SSH软件frps各个版本下载https://github.com/fatedier/frp/releases 安装frp服务端、客户端可以上传文件到vps，也可以直接源码安装，两种方式都试过，感觉源码安装比较方便。apt-get update wget --no-check-certificate https://raw.githubuse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="frp">
+<meta property="og:url" content="http://yoursite.com/2018/09/24/frps/index.html">
+<meta property="og:site_name" content="PHB">
+<meta property="og:description" content="准备工作一台VPS、frps服务/客户端、一个域名、一个SSH软件frps各个版本下载https://github.com/fatedier/frp/releases 安装frp服务端、客户端可以上传文件到vps，也可以直接源码安装，两种方式都试过，感觉源码安装比较方便。apt-get update wget --no-check-certificate https://raw.githubuse">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.imgur.com/DUYYGV6.png">
+<meta property="og:image" content="https://i.imgur.com/wiGDTgk.png">
+<meta property="og:updated_time" content="2018-09-24T04:40:52.265Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="frp">
+<meta name="twitter:description" content="准备工作一台VPS、frps服务/客户端、一个域名、一个SSH软件frps各个版本下载https://github.com/fatedier/frp/releases 安装frp服务端、客户端可以上传文件到vps，也可以直接源码安装，两种方式都试过，感觉源码安装比较方便。apt-get update wget --no-check-certificate https://raw.githubuse">
+<meta name="twitter:image" content="https://i.imgur.com/DUYYGV6.png">
+  
+    <link rel="alternative" href="/atom.xml" title="PHB" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">Particle Wong</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">FROM ZERO TO ZERO.</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+            </form>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/Home">博客首页</a></li>
+							<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=300 height=110 src="//music.163.com/outchain/player?type=0&id=997350421&auto=1&height=90"></iframe>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="mailto:hbh18775040493@gmail.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/particlewong" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="http://zhihu.com/people/particlehwang" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="http://weibo.com/particlehwang" title="weibo">weibo</a>
+                            
+                                <a class="fl twitter" target="_blank" href="https://twitter.com/hbh18775040493" title="twitter">twitter</a>
+                            
+                                <a class="fl QQ" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=rZyZlJ2Yn5SblZ-t3NyDzsLA" title="QQ">QQ</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://cxyzzz.github.io/">Lucky</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://zhangguanzhang.com/">ZHANG</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://cugxuan.github.io/">XUAN</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">一个正常人。。。。。。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">Particle Wong</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">Particle Wong</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">FROM ZERO TO ZERO.</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/Home">博客首页</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="mailto:hbh18775040493@gmail.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/particlewong" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="http://zhihu.com/people/particlehwang" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="http://weibo.com/particlehwang" title="weibo">weibo</a>
+                    
+                        <a class="twitter" target="_blank" href="https://twitter.com/hbh18775040493" title="twitter">twitter</a>
+                    
+                        <a class="QQ" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=rZyZlJ2Yn5SblZ-t3NyDzsLA" title="QQ">QQ</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-frps" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/09/24/frps/" class="article-date">
+      <time datetime="2018-09-24T04:01:31.479Z" itemprop="datePublished">2018-09-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      frp
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>一台VPS、frps服务/客户端、一个域名、一个SSH软件<br>frps各个版本下载<em><a href="https://github.com/fatedier/frp/releases" target="_blank" rel="noopener">https://github.com/fatedier/frp/releases</a></em></p>
+<h3 id="安装frp服务端、客户端"><a href="#安装frp服务端、客户端" class="headerlink" title="安装frp服务端、客户端"></a>安装frp服务端、客户端</h3><p>可以上传文件到vps，也可以直接源码安装，两种方式都试过，感觉源码安装比较方便。<br><code>apt-get update</code></p>
+<p><code>wget --no-check-certificate https://raw.githubusercontent.com/clangcn/onekey-install-shell/master/frps/install-frps.sh -O ./install-frps.sh</code></p>
+<p><code>chmod 700 ./install-frps.sh</code></p>
+<p><code>./install-frps.sh install</code></p>
+<a id="more"></a>
+<blockquote>
+</blockquote>
+<p> Please input frps bind_port <a href="Default Server Port: 5443">1-65535</a>: #输入frp提供服务的端口，用于服务器端和客户端通信，默认<br>Please input frps vhost_http_port <a href="Default vhost_http_port: 80">1-65535</a>: #输入frp进行http穿透的http服务端口，建议不用默认<br>Please input frps vhost_https_port <a href="Default vhost_https_port: 443">1-65535</a>: #输入frp进行https穿透的https服务端口，建议不用默认<br>Please input frps dashboard_port <a href="Default dashboard_port: 6443">1-65535</a>:#输入frp的控制台服务端口，用于查看frp工作状态，默认即可<br>Please input dashboard_user (Default: admin):#登录控制台的用户名，默认即可<br>Please input dashboard_pwd (Default: kpkpM7VZ):#登录控制台的密码，如果记不住默认的建议修改<br>Please input privilege_token (Default: 9m2UAOWa6hx5Eise):#输入frp服务器和客户端通信的密码，默认是随机生成的，默认即可<br>Please input frps max_pool_count <a href="Default max_pool_count: 50">1-200</a>:#设置每个代理可以创建的连接池上限，默认50</p>
+<h5 id="Please-select-log-level"><a href="#Please-select-log-level" class="headerlink" title="Please select log_level"></a>Please select log_level</h5><p>1: info<br>2: warn<br>3: error<br>4: debug</p>
+<p>#####################################################<br>Enter your choice (1, 2, 3, 4 or exit. default [1]): 默认即可<br>Please input frps log_max_days <a href="Default log_max_days: 3 day">1-30</a>:</p>
+<h5 id="Please-select-log-file"><a href="#Please-select-log-file" class="headerlink" title="Please select log_file"></a>Please select log_file</h5><p>1: enable<br>2: disable</p>
+<p>#####################################################<br>Enter your choice (1, 2 or exit. default [1]):默认即可</p>
+<p><img src="https://i.imgur.com/DUYYGV6.png" alt=""></p>
+<h3 id="登入Dashboard"><a href="#登入Dashboard" class="headerlink" title="登入Dashboard"></a>登入Dashboard</h3><p>浏览器打开你的VPSip＋Dashboard port，输入上一步的Dashboard user ，<br>Dashboard password<br><img src="https://i.imgur.com/wiGDTgk.png" alt=""></p>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>到<a href="https://github.com/fatedier/frp/releases" target="_blank" rel="noopener">https://github.com/fatedier/frp/releases</a><br>下载相应的客户端解压，<br>其中名字带frpc的是客户端文件。<br>在路由器上配置很容易，将相关参数填好就行了。</p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/09/24/frps/">frp</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Particle Wong 的个人博客">Particle Wong</a></p>
+        <p><span>发布时间:</span>2018年09月24日 - 12时01分</p>
+        <p><span>最后更新:</span>2018年09月24日 - 12时40分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/09/24/frps/" title="frp">http://yoursite.com/2018/09/24/frps/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/09/24/frps/　　作者: Particle Wong" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2018/09/24/test/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          hexo常用命令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/23/Ubuntu下搭建lamp/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ubuntu下搭建LAMP</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装frp服务端、客户端"><span class="toc-number">2.</span> <span class="toc-text">安装frp服务端、客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Please-select-log-level"><span class="toc-number">2.0.1.</span> <span class="toc-text">Please select log_level</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Please-select-log-file"><span class="toc-number">2.0.2.</span> <span class="toc-text">Please select log_file</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#登入Dashboard"><span class="toc-number">3.</span> <span class="toc-text">登入Dashboard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端"><span class="toc-number">4.</span> <span class="toc-text">客户端</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'particlewong',
+      repo: 'particlewong.github.io',
+      oauth: {
+        client_id: '3010499438527aa64470',
+        client_secret: '2091ab2c8e1b4b16ca749f4ffe75d89de4af42d4',
+      },
+    })
+    gitment.render('gitments')
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/09/24/test/" title="上一篇: hexo常用命令">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2017/12/23/Ubuntu下搭建lamp/" title="下一篇: Ubuntu下搭建LAMP">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/09/24/ubuntu/">Ubuntu</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/24/test/">hexo常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/24/frps/">frp</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/23/Ubuntu下搭建lamp/">Ubuntu下搭建LAMP</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 Particle Wong
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >水滴到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
+
+  </div>
+</body>
+</html>
